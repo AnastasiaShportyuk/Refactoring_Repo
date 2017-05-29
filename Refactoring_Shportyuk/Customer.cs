@@ -84,27 +84,44 @@ namespace Refactoring_Shportyuk
         return result;
     }
         //Извлечение метода
-        void PrintOrders(string customer)
-        {
-            List<Order> orders = new List<Order>();
-            double Amount = 0.0;
+        
 
-            // Баннер 
+        void PrintOwing()
+        {
+            PrintBanner();// заменяем код вызовом метода
+            double amount = GetAmount();
+            string customer = "Покупатель 1";
+            PrintDetails(amount,customer);
+        }
+
+        //Извлекаем печать итогов в отдельный метод
+        void PrintBanner()
+        {
             Console.WriteLine("*****************************");
             Console.WriteLine("*** Итоги заказов клиента ***");
             Console.WriteLine("*****************************");
+        }
 
-          
+        //Извлекаем метод вывода деталей, делаем значения передаваемыми параметрами
+        void PrintDetails(double Amount,string customer)
+        {
+            Console.WriteLine("Имя покупателя: " + customer);
+            Console.WriteLine("Количество заказов: " + Amount);
+        }
+
+        double GetAmount()
+        {
+            List<Order> orders = new List<Order>();
+            double Amount = 0.0;
+            string customer = "Покупатель 1";
+
             foreach (Order order in orders)
             {
                 Amount += NumberOfOrdersFor(orders, customer);
             }
 
-            
-            Console.WriteLine("Имя покупателя: " + customer);
-            Console.WriteLine("Количество заказов: " + Amount);
+            return Amount;
         }
-
 
         // Разбиение условного оператора 
 
