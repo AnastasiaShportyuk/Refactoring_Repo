@@ -124,27 +124,44 @@ namespace Refactoring_Shportyuk
         }
 
         // Разбиение условного оператора 
-
+        //(Вычисление стоимости входного билета)
         public double summerRate; 
         public double winterRate;
         DateTime SUMMER_START = new DateTime(2017, 6, 1);
         DateTime SUMMER_END = new DateTime(2017, 8, 31);
-        public double GetTicketPrice(DateTime date, int quantity) 
+        public double GetTicketPrice(DateTime date, int quantity)
         {
-            double value;
+            double charge;
 
-            if (date < SUMMER_START || date > SUMMER_END)
+            if (NotSummer(date)) //заменяем вызовом метода
             {
-                value = quantity * winterRate;
+                charge = WinterCharge(quantity);//заменяем вызовом метода
             }
             else
             {
-                value = quantity * summerRate;
+                charge = SummerCharge(quantity);
             }
 
-            return value;
+            return charge;
         }
 
-
+        // Выделяем условие в метод с очевидным названием
+        private bool NotSummer(DateTime date)
+        {
+            return date < SUMMER_START || date > SUMMER_END;
+        }
+        // Выделяем условие в метод с очевидным названием
+        private double WinterCharge(int quantity)
+        {
+            return quantity * winterRate;
+        }
+        // Выделяем условие в метод с очевидным названием
+        private double SummerCharge(int quantity)
+        {
+            return quantity * summerRate;
+        }
     }
+
+
+}
 }
