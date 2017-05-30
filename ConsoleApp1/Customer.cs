@@ -4,10 +4,11 @@ using System.Collections.Generic;
 namespace Refactoring_Shportyuk
 {
     //Замена значения ссылкой
-    class Customer
+    public class Customer
     {
         //Хранение  с помощью статического поля ( Предоставление доступа к экземплярам класса покупателя) Реестр, который содержит пул всех обьектов ссылок 
         //и получать нужные экземпляры из него (Позволит сделать несколько позиций в обьекте заказе)
+
         private static Dictionary<string, Customer> instances = new Dictionary<string, Customer>();
 
         public string Name
@@ -15,7 +16,7 @@ namespace Refactoring_Shportyuk
             get;
             private set; //Запрет изменения имени покупателя, т.к. он создается заранее
         }
-        private Customer(string name)
+       public Customer(string name)
         {
             this.Name = name;
         }
@@ -81,7 +82,7 @@ namespace Refactoring_Shportyuk
         //Извлечение метода
         
 
-        void PrintOwing()
+        public void PrintOwing()
         {
             PrintBanner();// заменяем код вызовом метода
             double amount = GetAmount();
@@ -90,7 +91,7 @@ namespace Refactoring_Shportyuk
         }
 
         //Извлекаем печать итогов в отдельный метод
-        void PrintBanner()
+        public void PrintBanner()
         {
             Console.WriteLine("*****************************");
             Console.WriteLine("*** Итоги заказов клиента ***");
@@ -98,13 +99,13 @@ namespace Refactoring_Shportyuk
         }
 
         //Извлекаем метод вывода деталей, делаем значения передаваемыми параметрами
-        void PrintDetails(double Amount,string customer)
+        public void PrintDetails(double Amount,string customer)
         {
             Console.WriteLine("Имя покупателя: " + customer);
             Console.WriteLine("Количество заказов: " + Amount);
         }
 
-        double GetAmount()
+        public double GetAmount()
         {
             List<Order> orders = new List<Order>();
             double Amount = 0.0;
@@ -120,8 +121,8 @@ namespace Refactoring_Shportyuk
 
         // Разбиение условного оператора 
         //(Вычисление стоимости входного билета)
-        public double summerRate; 
-        public double winterRate;
+        public double summerRate=0.8; 
+        public double winterRate=1;
         DateTime SUMMER_START = new DateTime(2017, 6, 1);
         DateTime SUMMER_END = new DateTime(2017, 8, 31);
         public double GetTicketPrice(DateTime date, int quantity)
@@ -141,17 +142,17 @@ namespace Refactoring_Shportyuk
         }
 
         // Выделяем условие в метод с очевидным названием
-        private bool NotSummer(DateTime date)
+        public bool NotSummer(DateTime date)
         {
             return date < SUMMER_START || date > SUMMER_END;
         }
         // Выделяем условие в метод с очевидным названием
-        private double WinterCharge(int quantity)
+        public double WinterCharge(int quantity)
         {
             return quantity * winterRate;
         }
         // Выделяем условие в метод с очевидным названием
-        private double SummerCharge(int quantity)
+        public double SummerCharge(int quantity)
         {
             return quantity * summerRate;
         }

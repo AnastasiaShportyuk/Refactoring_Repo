@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F111DE7-9C7B-4F00-AAC2-D293EFCBD55D}</ProjectGuid>
+    <ProjectGuid>{D7C8102A-E69B-4F79-963E-2BB783378413}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTestProject1</RootNamespace>
-    <AssemblyName>UnitTestProject1</AssemblyName>
+    <RootNamespace>UnitTestProject2</RootNamespace>
+    <AssemblyName>UnitTestProject2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,7 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <ProjectReference Include="..\ConsoleApp1\Refactoring_Shportyuk.csproj">
+      <Project>{1bc3d4d9-751b-4d53-b699-0a5d1e0fba25}</Project>
+      <Name>Refactoring_Shportyuk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

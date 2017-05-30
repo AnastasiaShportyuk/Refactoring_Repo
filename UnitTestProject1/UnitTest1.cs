@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
+
 namespace UnitTestProject
 {
     [TestClass]
@@ -10,7 +11,7 @@ namespace UnitTestProject
         [TestMethod]
         public void TestMethod1()
         {
-           
+          // Refactoring_Shportyuk.
         }
 
         [TestMethod]
