@@ -10,23 +10,21 @@ namespace Refactoring_Shportyuk
     {
         //Хранение  с помощью статического поля ( Предоставление доступа к экземплярам класса покупателя) Реестр, который содержит пул всех обьектов ссылок 
         //и получать нужные экземпляры из него (Позволит сделать несколько позиций в обьекте заказе)
-        private static Hashtable instances = new Hashtable();
+        private static Dictionary<string, Customer> instances = new Dictionary<string, Customer>();
 
         public string Name
         {
             get;
             private set; //Запрет изменения имени покупателя, т.к. он создается заранее
         }
-
         private Customer(string name)
         {
             this.Name = name;
         }
-
         //Модифицируем чтобы он возвращал заранее созданного покупателя
         public static Customer GetByName(string name)
         {
-            return (Customer)instances[name];
+            return instances[name];
         }
         
         //Создаем покупателей заранее ( Загружаем тех клиентов, которые находятся в работе, можно брать из базы данных или файла)
@@ -54,7 +52,6 @@ namespace Refactoring_Shportyuk
         {
             get { return customer.Name; }
         }
-
         public Order(string customerName)
         {
             SetCustomer(customerName);
@@ -164,4 +161,4 @@ namespace Refactoring_Shportyuk
 
 
 }
-}
+
